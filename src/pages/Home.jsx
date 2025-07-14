@@ -3,6 +3,7 @@ import CountryCard from '../components/CountryCard';
 import SearchBar from '../components/SearchBar';
 import FilterDropdown from '../components/FilterDropdown';
 import Spinner from '../components/Spinner';
+import Navbar from '../components/Navbar';
 
 const Home = () => {
   const [countries, setCountries] = useState([]);
@@ -42,7 +43,7 @@ const Home = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">🌍 World Explorer</h1>
+      <Navbar/>
 
       <div className="flex flex-col sm:flex-row gap-4 mb-6">
         <div className="flex-1">
@@ -57,7 +58,9 @@ const Home = () => {
       </div>
 
       {loading ? (
-        <p className="text-center"><Spinner></Spinner></p>
+        <div className="text-center">
+            <Spinner />
+        </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredCountries.map((country) => (

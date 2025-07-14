@@ -24,7 +24,7 @@ const CountryDetail = () => {
     fetchCountry();
   }, [name]);
 
-  if (loading) return <p className="p-4 text-center"><Spinner></Spinner></p>;
+  if (loading) return <p className="p-4 text-center"> <Spinner/> </p>;
   if (!country) return <p className="p-4 text-center text-red-500">Country not found</p>;
 
   return (
