@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CountryCard from '../components/CountryCard';
 import SearchBar from '../components/SearchBar';
 import FilterDropdown from '../components/FilterDropdown';
+import Spinner from '../components/Spinner';
 
 const Home = () => {
   const [countries, setCountries] = useState([]);
@@ -56,7 +57,7 @@ const Home = () => {
       </div>
 
       {loading ? (
-        <p className="text-center">Loading countries...</p>
+        <p className="text-center"><Spinner></Spinner></p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredCountries.map((country) => (

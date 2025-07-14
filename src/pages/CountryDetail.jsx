@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import Spinner from '../components/Spinner';
 
 const CountryDetail = () => {
   const { name } = useParams();
@@ -23,7 +24,7 @@ const CountryDetail = () => {
     fetchCountry();
   }, [name]);
 
-  if (loading) return <p className="p-4 text-center">Loading country details...</p>;
+  if (loading) return <p className="p-4 text-center"><Spinner></Spinner></p>;
   if (!country) return <p className="p-4 text-center text-red-500">Country not found</p>;
 
   return (
@@ -45,6 +46,19 @@ const CountryDetail = () => {
       <p><strong>Currencies:</strong> {country.currencies ? Object.values(country.currencies).map(c => c.name).join(', ') : 'N/A'}</p>
       <p><strong>Timezones:</strong> {country.timezones.join(', ')}</p>
       <p><strong>Google Maps:</strong> <a className="text-blue-600 underline" href={country.maps.googleMaps} target="_blank" rel="noreferrer">View on Map</a></p>
+      <p><strong>Borders:</strong> 
+        {country.borders ? (
+            <div className="flex flex-wrap gap-2 mt-1">
+            {country.borders.map((border) => (
+                <span key={border} className="px-2 py-1 bg-gray-100 rounded shadow text-sm">
+                {border}
+                </span>
+            ))}
+            </div>
+        ) : (
+            ' None'
+        )}
+      </p>
     </div>
   );
 };
