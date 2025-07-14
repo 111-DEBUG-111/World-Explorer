@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const CountryDetail = () => {
   const { name } = useParams();
   const [country, setCountry] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCountry = async () => {
@@ -28,6 +29,12 @@ const CountryDetail = () => {
   return (
     <div className="p-4 max-w-3xl mx-auto">
       <h1 className="text-3xl font-bold mb-4">{country.name.common}</h1>
+      <button
+            onClick={() => navigate(-1)}
+            className="mb-4 px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded shadow"
+            >
+            ← Back
+        </button>
       <img src={country.flags.png} alt={country.name.common} className="w-full h-60 object-contain mb-4" />
       
       <p><strong>Official Name:</strong> {country.name.official}</p>
